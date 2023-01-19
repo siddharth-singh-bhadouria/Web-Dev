@@ -1,0 +1,52 @@
+html {
+    font-size: 20px;
+}
+
+#ems h2 {
+    font-size: 2em;
+    margin: 1em;
+}
+
+#ems h3 {
+    font-size: 1.5em;
+}
+
+#ems article {
+    font-size: 20px;
+}
+
+#ems div {
+    font-size: 1em;
+}
+
+button {
+    font-size: 1em;
+    border-radius: 0.5em;
+    background-color: rgb(107, 167, 18);
+    color: white;
+}
+
+#ems ul {
+    font-size: 1.5em;
+}
+
+
+#rems h2 {
+    font-size: 3rem;
+}
+
+#rems h3 {
+    font-size: 2rem;
+}
+
+#rems div {
+    font-size: 1rem;
+}
+
+#rems button {
+    font-size: 1.5rem;
+}
+
+#rems ul {
+    font-size: 1rem;
+}

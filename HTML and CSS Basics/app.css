@@ -1,0 +1,22 @@
+li {
+    color: blue;
+}
+
+.done {
+    color: grey;
+}
+
+#clear {
+    background-color: red;
+    color: white;
+}
+
+
+#header {
+    font-size: 30px;
+    color: teal;
+}
+
+#dislikes a {
+    color: red;
+}

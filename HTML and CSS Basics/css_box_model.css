@@ -1,0 +1,34 @@
+/* The CSS Box Model */
+
+div {
+    width: 200px;
+    height: 200px;
+    background-color: teal;
+}
+
+#one {
+    background-color: #dad7cd;
+    border-width: 5px;
+    border-color: #588157;
+    border-style: solid;
+    margin: 100px;
+}
+
+#two {
+    background-color: #ffc8dd;
+    border-width: 5px;
+    border-color: #ffafcc;
+    border-style: dotted;
+    margin: 100px 100px
+}
+
+#three {
+    background-color: #8ecae6;
+    border: 5px solid blue;
+    border-left-style: dotted;
+    border-radius: 50%;
+}
+
+button {
+    padding: 5px 10px 0 10px
+}
