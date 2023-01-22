@@ -1,3 +1,7 @@
+section {
+    height: 1000px;
+}
+
 div {
     width: 100px;
     height: 100px;
@@ -7,13 +11,15 @@ div {
     display: inline-block;
 }
 
+
 #middle {
     background-color: rgb(66, 132, 66);
 }
 
+
 #static #middle {
     position: static;
-    top: 100px;
+    top: 50px;
 }
 
 #relative #middle {
@@ -28,14 +34,14 @@ div {
 
 #absolute #middle {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 50px;
+    left: 50px;
 }
 
 #fixed #middle {
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 50px;
+    left: 50px;
 }
 
 #sticky #middle {
