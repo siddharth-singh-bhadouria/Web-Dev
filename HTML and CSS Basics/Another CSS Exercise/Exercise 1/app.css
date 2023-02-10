@@ -1,0 +1,27 @@
+/* Using Flexbox */
+
+.square {
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    border: 1px solid black;
+}
+
+#board {
+    display: flex;
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    flex-wrap: wrap;
+}
+
+/* Now changing colors */
+
+.square:nth-child(odd) {
+    background-color: red;
+}
+
+.square:nth-child(even) {
+    background-color: black;
+}
