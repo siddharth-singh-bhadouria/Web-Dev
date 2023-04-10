@@ -8,3 +8,5 @@ const restaurant = {
 }
 
 //YOUR CODE GOES DOWN HERE:
+
+let fullAddress = `${restaurant.name}, ${restaurant.city}, ${restaurant.state} ${restaurant.zipcode}`
