@@ -1,23 +1,14 @@
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-
-
-
-
-const movies = [
-    {
-        title: 'Amadeus',
-        score: 99
+const person = {
+    firstName: 'Viggo',
+    lastName: 'Mortensen',
+    fullName: function () {
+        return `${this.firstName} ${this.lastName}`
     },
-    {
-        title: 'Stand By Me',
-        score: 85
-    },
-    {
-        title: 'Parasite',
-        score: 95
-    },
-    {
-        title: 'Alien',
-        score: 90
+    shoutName: function () {
+        setTimeout(() => {
+            //keyword 'this' in arrow functions refers to the value of 'this' when the function is created
+            console.log(this);
+            console.log(this.fullName())
+        }, 3000)
     }
-]
+}
