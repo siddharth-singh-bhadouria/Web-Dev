@@ -18,6 +18,7 @@ const canine = { isFurry: true, family: 'Caninae' };
 const catDog = { ...feline, ...canine };
 
 
+// PRACTICAL USE OF SPREAD ( USED IN WEBSITES TO ADD OTHER SPECIFIC DETAILS IN A SEPARATE LOCATION )
 const dataFromForm = {
     email: 'blueman@gmail.com',
     password: 'tobias123!',
