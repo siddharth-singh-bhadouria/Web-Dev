@@ -14,5 +14,5 @@ req.onerror = function () {
     console.log(this);
 }
 
-req.open('GET', 'https://api.cryptonator.com/api/ticker/btc-usd')
+req.open('GET', 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')
 req.send();
