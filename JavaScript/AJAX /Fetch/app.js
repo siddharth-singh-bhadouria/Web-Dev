@@ -14,7 +14,7 @@
 
 const getBitcoinPrice = async () => {
     try {
-        const res = await (await fetch('https://min-api.cryptocompe.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')).json()
+        const res = await (await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR')).json()
         console.log(res.USD)
     }
     catch (e) {
