@@ -1,2 +1,3 @@
-const math = require('./math')
-console.log(math)
+const { PI, square } = require('./math')
+
+console.log(PI) 
