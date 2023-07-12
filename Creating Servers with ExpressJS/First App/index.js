@@ -11,6 +11,11 @@ app.get('/', (req, res) => {
     res.send('Welcome to the home page!')
 })
 
+app.get('/r/:subreddit', (req, res) => {
+    const { subreddit } = req.params
+    res.send(`You are at the ${subreddit} subreddit`)
+})
+
 app.post('/cats', (req, res) => {
     res.send('POST REQUEST TO /cats!!!! THIS IS DIFFERENT THAN A GET REQUEST!')
 })
