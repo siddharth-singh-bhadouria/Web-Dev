@@ -48,9 +48,14 @@ const Movie = mongoose.model('Movie', movieSchema)
 //     })
 
 
-// async function findingMovie() {
-//     const c = await Movie.findOne({ title: 'Amadeus' })
-//     console.log(c)
-// }
+async function findingMovie() {
+    try {
+        const c = await Movie.findOne({ title: 'Amadeus' })
+        console.log(c)
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
 
-// findingMovie()
+findingMovie()
