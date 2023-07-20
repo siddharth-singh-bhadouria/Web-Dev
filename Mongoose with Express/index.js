@@ -23,7 +23,7 @@ app.use(methodOverride('_method'))
 
 app.get('/products', async (req, res) => {
     const products = await Product.find({})
-    console.log(products)
+    // console.log(products)
     res.render('products/index', { products })
 })
 
@@ -34,7 +34,7 @@ app.get('/products/new', (req, res) => {
 app.post('/products', async (req, res) => {
     const newProduct = new Product(req.body)
     await newProduct.save()
-    console.log(newProduct)
+    // console.log(newProduct)
     res.redirect(`/products/${newProduct.id}`)
 })
 
@@ -51,8 +51,11 @@ app.get('/products/:id/edit', async(req, res) => {
     res.render('products/edit',{product})
 })
 
-app.put()
-
+app.put('/products/:id',async(req,res)=>{
+    const { id } = req.params
+    const product = await Product.findByIdAndUpdate(id, req.body , {runValidations:true,new:true})
+    res.redirect(`/products/${product.id}`)
+})
 
 app.listen(3000, () => {
     console.log('LISTENING TO PORT 3000!!')
