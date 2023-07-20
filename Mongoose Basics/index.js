@@ -14,6 +14,7 @@
 
 //INSTEAD OF THE ABOVE , SIMPLY USE .then() and .catch() blocks as mongoose.connect supports promises. 
 const mongoose = require('mongoose');
+
 mongoose.connect('mongodb://127.0.0.1:27017/movieApp')
     .then(() => {
         console.log('CONNECTION OPEN!!')
