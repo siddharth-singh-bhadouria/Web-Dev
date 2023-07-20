@@ -11,12 +11,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/shopApp')
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        default: true,
+        required: true,
         maxlength: 20
     },
     price: {
         type: Number,
-        default: true,
+        required: true,
         min: [0, 'Price must be positive ya dodo!']
     },
     onSale: {
@@ -38,7 +38,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         enum: ['S', 'M', 'L']
     }
-
 })
 
 
