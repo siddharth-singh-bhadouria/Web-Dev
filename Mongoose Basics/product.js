@@ -44,18 +44,31 @@ const productSchema = new mongoose.Schema({
 
 })
 
+productSchema.methods.greet = function () {
+    console.log('HELLOOO!! HI !! HOWDYYYY!!')
+}
+
+
+
 const Product = mongoose.model('Product', productSchema)
 
-const bike = new Product({ name: 'Cycling Jersey', price: 28.50, categories: ['Cycling'], size: 'XS' })
-bike.save()
-    .then(data => {
-        console.log("IT WORKED!")
-        console.log(data);
-    })
-    .catch(err => {
-        console.log("OH NO ERROR!")
-        console.log(err)
-    })
+const findProduct = async () => {
+    const foundProduct = await Product.findOne({ name: 'Bike Helmet' })
+    foundProduct.greet()
+}
+
+findProduct()
+
+// const bike = new Product({ name: 'Cycling Jersey', price: 28.50, categories: ['Cycling'], size: 'XS' })
+// bike.save()
+//     .then(data => {
+//         console.log("IT WORKED!")
+//         console.log(data);
+//     })
+//     .catch(err => {
+//         console.log("OH NO ERROR!")
+//         console.log(err)
+//     })
 
 
 // Product.findOneAndUpdate({ name: 'Tire Pump' }, { price: 9 }, { new: true, runValidators: true })
