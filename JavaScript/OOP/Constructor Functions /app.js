@@ -2,7 +2,7 @@
 
 
 
-// DONT TRY TO LEARN . CLASSES AND CONSTRUCTORS LIKE IN JAVA IS THE BEST WAY ===>
+// DONT TRY TO LEARN . CLASSES AND CONSTRUCTORS LIKE IN JAVA IS THE BEST WAY ====>
 function Color(r, g, b) {
     this.r = r;
     this.g = g;

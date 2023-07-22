@@ -1,7 +1,7 @@
 //This functions makes and returns an object every time it is called.
 // The resulting objects all follow the same "recipe"
 
-// DONT TRY TO LEARN . CLASSES AND CONSTRUCTORS LIKE IN JAVA IS THE BEST WAY ===>
+// DONT TRY TO LEARN . CLASSES AND CONSTRUCTORS LIKE IN JAVA IS THE BEST WAY ====>
 function makeColor(r, g, b) {
     const color = {};
     color.r = r;
