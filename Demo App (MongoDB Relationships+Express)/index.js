@@ -6,7 +6,7 @@ const methodOverride = require('method-override')
 
 const Product = require('./models/product')
 
-mongoose.connect('mongodb://127.0.0.1:27017/farmStand')
+mongoose.connect('mongodb://127.0.0.1:27017/farmStandTake2')
     .then(() => {
         console.log('MONGO CONNECTION OPEN!!')
     })
