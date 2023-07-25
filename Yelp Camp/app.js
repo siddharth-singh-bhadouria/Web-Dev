@@ -25,22 +25,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-app.get('/', (req, res) => {
-    res.render('home')
-})
-
-app.get('/campgrounds', catchAsync(async (req, res) => {
-    const campgrounds = await Campground.find({})
-    res.render('campgrounds/index', { campgrounds })
-}))
-
-app.get('/campgrounds/new', (req, res) => {
-    res.render('campgrounds/new')
-})
-
-app.post('/campgrounds', catchAsync(async (req, res) => {
-    const { campground } = req.body
-    // if (!campground) throw new ExpressError('Invalid Campground Data', 400)
+const validateCampground = (req, res, next) => {
     const campgroundSchema = Joi.object({
         campground: Joi.object({
             title: Joi.string().required(),
@@ -55,7 +40,27 @@ app.post('/campgrounds', catchAsync(async (req, res) => {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
     }
-    console.log(result)
+    else {
+        next()
+    }
+}
+
+app.get('/', (req, res) => {
+    res.render('home')
+})
+
+app.get('/campgrounds', catchAsync(async (req, res) => {
+    const campgrounds = await Campground.find({})
+    res.render('campgrounds/index', { campgrounds })
+}))
+
+app.get('/campgrounds/new', (req, res) => {
+    res.render('campgrounds/new')
+})
+
+app.post('/campgrounds', validateCampground, catchAsync(async (req, res) => {
+    const { campground } = req.body
+    // if (!campground) throw new ExpressError('Invalid Campground Data', 400)
     const camp = new Campground(campground)
     await camp.save()
     res.redirect(`/campgrounds/${camp.id}`)
@@ -73,7 +78,7 @@ app.get('/campgrounds/:id/edit', catchAsync(async (req, res) => {
     res.render('campgrounds/edit', { campground })
 }))
 
-app.put('/campgrounds/:id', catchAsync(async (req, res) => {
+app.put('/campgrounds/:id', validateCampground, catchAsync(async (req, res) => {
     const { id } = req.params
     const campground = await Campground.findByIdAndUpdate(id, { ...req.body.campground })
     res.redirect(`/campgrounds/${campground.id}`)
