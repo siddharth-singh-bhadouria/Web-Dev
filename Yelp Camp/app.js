@@ -48,7 +48,7 @@ app.post('/campgrounds', catchAsync(async (req, res) => {
         }).required()
     })
     const result = campgroundSchema.validate(req.body)
-    console.log(result)
+    // console.log(result)
     const camp = new Campground(campground)
     await camp.save()
     res.redirect(`/campgrounds/${camp.id}`)
