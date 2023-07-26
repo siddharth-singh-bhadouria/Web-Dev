@@ -46,6 +46,28 @@ app.get('/farms/:id', async (req, res) => {
     res.render('farms/show', { farm })
 })
 
+app.get('/farms/:id/products/new', (req, res) => {
+    const { id } = req.params
+    // const farm = await Farm.findById(id) 
+    res.render('products/new', { categories, id })
+})
+
+app.post('/farms/:id/products', async (req, res) => {
+    const { id } = req.params
+    const farm = await Farm(req.body)
+    const { name, city, email } = farm
+    const product = new Product({ name, city, email })
+    farm.products.push(product)
+    product.farm = farm
+    await farm.save()
+    await product.save()
+    res.send(farm)
+})
+
+
+
+
+
 
 
 
