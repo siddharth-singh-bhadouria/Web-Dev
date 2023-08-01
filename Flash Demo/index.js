@@ -3,9 +3,15 @@ const app = express()
 const path = require('path')
 const mongoose = require('mongoose');
 const methodOverride = require('method-override')
+const session = require('express-session')
+const flash = require('connect-flash')
 
 const Product = require('./models/product')
 const Farm = require('./models/farm')
+
+const sessionOptions = { secret: 'thisisnotagoodsecret', resave: false, saveUninitialized: false }
+app.use(session(sessionOptions))
+app.use(flash())
 
 mongoose.connect('mongodb://127.0.0.1:27017/flashDemo')
     .then(() => {
@@ -27,7 +33,7 @@ app.use(methodOverride('_method'))
 
 app.get('/farms', async (req, res) => {
     const farms = await Farm.find({})
-    res.render('farms/index', { farms })
+    res.render('farms/index', { farms, message: req.flash('success') })
 })
 
 app.get('/farms/new', (req, res) => {
@@ -37,6 +43,7 @@ app.get('/farms/new', (req, res) => {
 app.post('/farms', async (req, res) => {
     const farm = new Farm(req.body)
     await farm.save()
+    req.flash('success', 'Successfully made a new farm! ')
     res.redirect('/farms')
 })
 
@@ -46,29 +53,29 @@ app.get('/farms/:id', async (req, res) => {
     res.render('farms/show', { farm })
 })
 
-app.get('/farms/:id/products/new', async (req, res) => {
-    const { id } = req.params
-    const farm = await Farm.findById(id)
-    res.render('products/new', { categories, farm })
-})
+// app.get('/farms/:id/products/new', async (req, res) => {
+//     const { id } = req.params
+//     const farm = await Farm.findById(id)
+//     res.render('products/new', { categories, farm })
+// })
 
-app.post('/farms/:id/products', async (req, res) => {
-    const { id } = req.params
-    const farm = await Farm.findById(id)
-    const { name, price, category } = req.body
-    const product = new Product({ name, price, category })
-    farm.products.push(product)
-    product.farm = farm
-    await farm.save()
-    await product.save()
-    res.redirect(`/farms/${id}`)
-})
+// app.post('/farms/:id/products', async (req, res) => {
+//     const { id } = req.params
+//     const farm = await Farm.findById(id)
+//     const { name, price, category } = req.body
+//     const product = new Product({ name, price, category })
+//     farm.products.push(product)
+//     product.farm = farm
+//     await farm.save()
+//     await product.save()
+//     res.redirect(`/farms/${id}`)
+// })
 
-app.delete('/farms/:id', async (req, res) => {
-    const { id } = req.params
-    const farm = await Farm.findByIdAndDelete(id)
-    res.redirect('/farms')
-})
+// app.delete('/farms/:id', async (req, res) => {
+//     const { id } = req.params
+//     const farm = await Farm.findByIdAndDelete(id)
+//     res.redirect('/farms')
+// })
 
 
 
