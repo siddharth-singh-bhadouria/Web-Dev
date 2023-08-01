@@ -1,5 +1,5 @@
 const express = require('express')
-const route = express.Router({ mergeParams: true }) //mergeParams to access params from index.js file
+const route = express.Router({ mergeParams: true }) //mergeParams to access params from index.js file 
 const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
 const { reviewSchema } = require('../schemas')
@@ -33,7 +33,6 @@ route.delete('/reviews/:reviewId', catchAsync(async (req, res) => {
     await Review.findByIdAndDelete(reviewId)
     res.redirect(`/campgrounds/${id}`)
 }))
-
 
 
 
