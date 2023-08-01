@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 const Campground = require('./models/campground')
 const Review = require('./models/review')
 const session = require('express-session')
-const flash = require('flash')
+const flash = require('connect-flash')
 
 const campgrounds = require('./routes/campgrounds')
 const reviews = require('./routes/reviews')
@@ -45,6 +45,13 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 app.use(flash())
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    next()
+})
+
+
 
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id', reviews)
