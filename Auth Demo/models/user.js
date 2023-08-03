@@ -5,7 +5,7 @@ const userSchema = {
         type: String,
         required: [true, 'Username cannot be blank']
     },
-    hashedPassword: {
+    password: {
         type: String,
         required: [true, 'Password cannot be blank']
     }
