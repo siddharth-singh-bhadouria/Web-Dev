@@ -9,13 +9,14 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const Campground = require('./models/campground')
 const Review = require('./models/review')
+const User = require('./models/user')
 const session = require('express-session')
 const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
-const User = require('./models/user')
 
 
+const users = require('./routes/users')
 const campgrounds = require('./routes/campgrounds')
 const reviews = require('./routes/reviews')
 
@@ -70,6 +71,7 @@ app.get('/fakeuser', async (req, res) => {
     res.send(newUser)
 })
 
+app.use('/', users)
 app.use('/campgrounds', campgrounds)
 app.use('/campgrounds/:id', reviews)
 

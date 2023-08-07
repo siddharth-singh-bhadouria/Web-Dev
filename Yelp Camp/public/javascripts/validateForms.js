@@ -15,5 +15,8 @@
 
             form.classList.add('was-validated')
         }, false)
+
+        console.log('validateForms.js script loaded');
+
     })
 })() 
