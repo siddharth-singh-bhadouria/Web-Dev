@@ -4,7 +4,7 @@ const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
 const { campgroundSchema } = require('../schemas')
 const Campground = require('../models/campground')
-const { isLoggedIn } = require('../utils/middleware')
+const { isLoggedIn } = require('../middleware')
 
 const validateCampground = (req, res, next) => {
 

@@ -2,13 +2,9 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const ejsMate = require('ejs-mate')
-const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
-const { campgroundSchema, reviewSchema } = require('./schemas')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
-const Campground = require('./models/campground')
-const Review = require('./models/review')
 const User = require('./models/user')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -16,9 +12,9 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 
 
-const users = require('./routes/users')
-const campgrounds = require('./routes/campgrounds')
-const reviews = require('./routes/reviews')
+const userRoutes = require('./routes/users')
+const campgroundRoutes = require('./routes/campgrounds')
+const reviewRoutes = require('./routes/reviews')
 
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
     .then(() => {
@@ -66,15 +62,9 @@ app.use((req, res, next) => {
     next()
 })
 
-app.get('/fakeuser', async (req, res) => {
-    const user = new User({ email: 'siddd@gmail.com', username: 'sidddd' })
-    const newUser = await User.register(user, 'great')
-    res.send(newUser)
-})
-
-app.use('/', users)
-app.use('/campgrounds', campgrounds)
-app.use('/campgrounds/:id', reviews)
+app.use('/', userRoutes)
+app.use('/campgrounds', campgroundRoutes)
+app.use('/campgrounds/:id', reviewRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
