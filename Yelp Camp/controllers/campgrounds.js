@@ -10,13 +10,13 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createCampground = async (req, res) => {
-    const { campground } = req.body
+    const { camp } = req.body
+    const campground = new Campground(camp)
     campground.author = req.user._id
     // if (!campground) throw new ExpressError('Invalid Campground Data', 400)
-    const camp = new Campground(campground)
-    await camp.save()
+    await campground.save()
     req.flash('success', 'Successfully made a new campground!')
-    res.redirect(`/campgrounds/${camp._id}`)
+    res.redirect(`/campgrounds/${campground._id}`)
 }
 
 module.exports.showCampgrounds = async (req, res) => {
