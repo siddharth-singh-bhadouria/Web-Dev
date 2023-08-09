@@ -5,7 +5,7 @@ const ExpressError = require('../utils/ExpressError')
 const { reviewSchema } = require('../schemas')
 const Campground = require('../models/campground')
 const Review = require('../models/review')
-const { validateReview, isLoggedIn } = require('../middleware')
+const { validateReview, isLoggedIn, isReviewAuthor } = require('../middleware')
 
 
 router.post('/reviews', isLoggedIn, validateReview, catchAsync(async (req, res) => {
@@ -20,7 +20,7 @@ router.post('/reviews', isLoggedIn, validateReview, catchAsync(async (req, res) 
     res.redirect(`/campgrounds/${campground._id}`)
 }))
 
-router.delete('/reviews/:reviewId', isLoggedIn, catchAsync(async (req, res) => {
+router.delete('/reviews/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(async (req, res) => {
     const { id, reviewId } = req.params
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } })
     await Review.findByIdAndDelete(reviewId)
