@@ -2,3 +2,4 @@
 node_modules
 Express Templating Code/Bootstrap+Express Demo/public/css
 Express Templating Code/Bootstrap+Express Demo/public/js
+.env
