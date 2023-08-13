@@ -19,8 +19,10 @@ module.exports.storeReturnTo = (req, res, next) => {
 }
 
 module.exports.validateCampground = (req, res, next) => {
+    console.log(req.body)
     const { error } = campgroundSchema.validate(req.body)
     if (error) {
+        console.log(req.files)
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
     }
