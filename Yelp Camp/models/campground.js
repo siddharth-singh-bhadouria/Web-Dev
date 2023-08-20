@@ -43,7 +43,6 @@ const campgroundSchema = new Schema({
 }, opts)
 
 campgroundSchema.virtual('properties.popUpMarkup').get(function () {
-
     try {
         return `<strong><a>${this.title}</a></strong>`
     }
