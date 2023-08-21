@@ -44,7 +44,7 @@ const campgroundSchema = new Schema({
 
 campgroundSchema.virtual('properties.popUpMarkup').get(function () {
     try {
-        return `<strong><a>${this.title}</a></strong>`
+        return `<a href=campgrounds/${this._id}>${this.title}</a>`
     }
     catch (e) {
         console.log('JSON fucking died1', e)
@@ -60,3 +60,4 @@ campgroundSchema.post('findOneAndDelete', async (data) => {
 const Campground = new mongoose.model('Campground', campgroundSchema)
 
 module.exports = Campground
+
