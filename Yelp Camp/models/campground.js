@@ -44,7 +44,7 @@ const campgroundSchema = new Schema({
 
 campgroundSchema.virtual('properties.popUpMarkup').get(function () {
     try {
-        return `<a href=campgrounds/${this._id}>${this.title}</a>`
+        return `<strong><a href=campgrounds/${this._id}>${this.title}</a></strong>`
     }
     catch (e) {
         console.log('JSON fucking died1', e)
