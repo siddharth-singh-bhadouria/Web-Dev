@@ -15,6 +15,7 @@ const flash = require('connect-flash')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const mongoSanitize = require('express-mongo-sanitize')
+const helmet = require('helmet')
 
 
 const userRoutes = require('./routes/users')
@@ -56,6 +57,7 @@ const sessionConfig = {
 
 app.use(session(sessionConfig))
 app.use(flash())
+app.use(helmet({ contentSecurityPolicy: false }))
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -69,7 +71,6 @@ app.use((req, res, next) => {
     if (!['/login', '/'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl
     }
-    console.log(req.query)
     res.locals.currentUser = req.user
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
