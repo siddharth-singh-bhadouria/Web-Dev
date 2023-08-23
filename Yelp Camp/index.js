@@ -16,13 +16,14 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local')
 const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
+const MongoStore = require('connect-mongo')
 
 
 const userRoutes = require('./routes/users')
 const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
-const dbUrl = process.env.DB_URL
-// mongodb://127.0.0.1:27017/yelp-camp
+// const dbUrl = process.env.DB_URL
+const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp'
 
 mongoose.connect(dbUrl)
     .then(() => {
@@ -44,20 +45,26 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
-const sessionConfig = {
-    name: 'session',
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret: 'thisshouldbeabettersecret',
+    touchAfter: 24 * 60 * 60
+})
+
+app.use(session({
     secret: 'thisshouldbeabettersecret',
     resave: false,
     saveUninitialized: true,
+    store,
     cookie: {
         httpOnly: true,
         // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
-}
+}))
 
-app.use(session(sessionConfig))
+// app.use(session(sessionConfig))
 app.use(flash())
 app.use(helmet())
 
