@@ -22,8 +22,9 @@ const MongoStore = require('connect-mongo')
 const userRoutes = require('./routes/users')
 const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
-// const dbUrl = process.env.DB_URL
-const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp'
+
+
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp'
 
 mongoose.connect(dbUrl)
     .then(() => {
@@ -45,14 +46,16 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+const secret = process.env.SECRET || 'thisshouldbeabettersecret'
+
 const store = MongoStore.create({
     mongoUrl: dbUrl,
-    secret: 'thisshouldbeabettersecret',
+    secret,
     touchAfter: 24 * 60 * 60
 })
 
 app.use(session({
-    secret: 'thisshouldbeabettersecret',
+    secret,
     resave: false,
     saveUninitialized: true,
     store,
