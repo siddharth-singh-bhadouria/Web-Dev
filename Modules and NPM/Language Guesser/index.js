@@ -1,5 +1,5 @@
 
-import { franc, francAll } from 'franc';
+import { franc, francAll } from 'franc'; //import used instead of require for ES6 compatibility(the library stopped working with require after the update so it is different from the web dev tutorial by Colt Steele)
 import pkg from 'langs';
 const { langs, langsAll } = pkg;
 import colors from 'colors';
@@ -13,5 +13,5 @@ if (langCode === 'und') {
 }
 else {
     const language = pkg.where("3", langCode)
-    console.log(`Our best guess is : ${language.name.green}`)
+    // console.log(`Our best guess is : ${language.name.green}`)
 }
